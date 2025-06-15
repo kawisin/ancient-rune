@@ -1,0 +1,56 @@
+# Build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Rider
+.idea/
+.vs/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# NuGet
+*.nupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# ASP.NET Core
+wwwroot/lib/
+node_modules/
+
+# Docker-related
+**/docker-compose.override.yml
+**/docker-compose.*.yml
+.env
+
+# Test results
+TestResults/
+*.coverage
+*.coveragexml
+*.trx
+
+# Publish output
+publish/
+*.dbmdl
+
+# Others
+*.cache
+*.pid
+*.swp
+
+.env

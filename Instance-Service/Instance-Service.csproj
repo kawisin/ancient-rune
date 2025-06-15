@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Instance_Service</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<None Update="Config\InstanceDB.yaml">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
+	<None Update="$(SolutionDir)Shares\.env">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		<Link>Shares\.env</Link>
+	</None>
+	<PackageReference Include="AspNetCoreRateLimit" Version="5.0.0" />
+	<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.20" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.20" />
+    <PackageReference Include="MongoDB.Driver" Version="3.4.0" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="System.Text.Json" Version="10.0.0-preview.4.25258.110" />
+    <PackageReference Include="YamlDotNet" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shares\Shares.csproj" />
+  </ItemGroup>
+
+</Project>

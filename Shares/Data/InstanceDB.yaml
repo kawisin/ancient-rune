@@ -1,0 +1,26 @@
+Header:
+  Type: INSTANCE_DB
+  Version: 1
+
+Body:
+  - Id: 1
+    Name: Asgard
+    TimeLimit: 0
+    IdleTimeOut: 0
+    Destroyable: false
+    Enter:
+      Map: Asgard
+      X: 31
+      Y: 28
+      Z: 90
+
+  - Id: 2
+    Name: Dungeon
+    TimeLimit: 30
+    IdleTimeOut: 5
+    Destroyable: true
+    Enter:
+      Map: pay_dun01
+      X: 45
+      Y: 87
+      Z: 0

@@ -1,0 +1,55 @@
+services:
+  
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro  # mount script init user
+    command: ["mongod", "--auth", "--quiet"]
+
+  instance-service:
+    build:
+      context: .
+      dockerfile: Instance-Service/Dockerfile
+    ports:
+      - "5251:5251/tcp"
+      - "7777-7800:7777-7800/tcp"
+      - "7777-7800:7777-7800/udp"
+    depends_on:
+      - mongo
+    volumes:
+      - A:/MMORPG/MMORPG/Binaries/LinuxServer:/app/MMORPGServer
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:5251
+      - DOCKER_ON=true
+    env_file:
+      - ${PWD}/.env
+
+  login-service:
+    build:
+      context: .
+      dockerfile: Login-Service/Dockerfile
+    ports:
+      - "5252:5252"
+    depends_on:
+      - mongo
+    environment:
+      - ASPNETCORE_URLS=http://0.0.0.0:5252
+      - DOCKER_ON=true
+    env_file:
+      - ${PWD}/.env
+        
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"     # client port
+      - "15672:15672"   # web management UI
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
+
+volumes:
+  mongo-data:
